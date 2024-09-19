@@ -140,7 +140,7 @@ void Insert()
 			}
 			break;
 
-			case 4: // display list
+			case 4: 
 			{
 				Display();
 			}
