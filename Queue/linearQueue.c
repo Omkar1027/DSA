@@ -12,7 +12,6 @@ void enqueue(int ele) {
     }
     if(front==-1 && rear==-1){
         front++;
-        printf("Front increased");
     }
     my_c_queue[++rear]=ele;
 }
@@ -24,6 +23,7 @@ void dequeue(){
     }
     if(front==rear){
         front=rear=-1;
+        return;
     }
     front++;
 }
@@ -35,9 +35,9 @@ void print_queue(){
     }
     int i=0;
     for(i=front;i<=rear;i++){
-        printf("%d ", my_c_queue[i]);
+        printf("%d -> ", my_c_queue[i]);
     }
-    if(i!=0) printf("-> Null");
+    if(i>rear) printf("Null");
 }
 
 int main() {
