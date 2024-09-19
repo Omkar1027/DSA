@@ -10,12 +10,6 @@ int preference(char c) {
     else return -1;
 }
 
-char raiseTo(char c) {
-    if (c == '^')
-        return 'R';
-    return 'L';
-}
-
 void push(char stack[], char store) {
     stack[++stackIndex] = store;
 }
@@ -29,6 +23,7 @@ char pop(char stack[]) {
 void iToP(char infix[]) {
     char postfix[100], stack[100], temp;
     int postfixInd = 0, len;
+
     stack[++stackIndex] = '(';
     len = strlen(infix);
     infix[len++] = ')';
@@ -36,18 +31,27 @@ void iToP(char infix[]) {
 
     for (int i = 0; i < len; i++) {
         char ichar = infix[i];
+
         if ((ichar >= '0' && ichar <= '9') || (ichar >= 'a' && ichar <= 'z') || (ichar >= 'A' && ichar <= 'Z')) {
             postfix[postfixInd++] = ichar;
-        } else if (ichar == '(') {
+        } 
+
+        else if (ichar == '(') {
             push(stack, ichar);
-        } else if (ichar == ')') {
-            while (stackIndex >= 0 && stack[stackIndex] != '(') {
+        } 
+
+        else if (ichar == ')') {
+
+            while (stackIndex > -1 && stack[stackIndex] != '(') {
                 temp = pop(stack);
                 postfix[postfixInd++] = temp;
             }
             stackIndex--; // Pop the '(' from the stack
-        } else {
-            while (stackIndex >= 0 && (preference(ichar) <= preference(stack[stackIndex]) && raiseTo(ichar) == 'L')) {
+        } 
+
+        else {
+
+            while (stackIndex > -1 && (preference(ichar) <= preference(stack[stackIndex]) && ichar != '^')) {
                 temp = pop(stack);
                 postfix[postfixInd++] = temp;
             }
