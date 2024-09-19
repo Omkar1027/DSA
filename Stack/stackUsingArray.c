@@ -1,24 +1,42 @@
-//MAXIMUN ELEMENTS
+#include <stdio.h>
+int arrayIndex=0;
+void printArray(int arr[], int arrayIndex){
+for(int i=0;i<arrayIndex;i++){
+printf("arr[%d]=%d \n",i,arr[i]);
+}
+}
+void push(int arr[]){
+printf("Enter element to push: ");
+scanf("%d",&arr[arrayIndex]);
+arrayIndex++;
+}
+void pop(int arr[]){
+arr[arrayIndex]=0;
+arrayIndex--;
+}
 
-/*int* getMax(int operations_count, char** operations, int* result_count) {
-    int top=-1,n1=0,n2=0,result_index=0;
-    int myStack[operations_count+10];
-    
-    int* results= malloc(operations_count * sizeof(int));
-    
-    for(int x=0;x<operations_count;x++){
-        if (sscanf(operations[x], "%d %d", &n1, &n2) < 1) {
-            continue; 
-        }
-        if(n1==2&& top!=-1){
-            top--;
-        }else if(n1==3 && top!=-1){
-            results[result_index++]=myStack[top];    
-        }else if(n1==1){
-            myStack[++top]=n2;  
-        }
-    }
-    *result_count=result_index;
-    return results;
-}*/
+int main(){
+int arr[10] ={},choice=0;
+while(choice!=4){
+printf("\nPress 1 to push, 2 to pop, 3 to print array, 4 to exit :");
+scanf("%d", &choice);
+switch (choice) {
+case 1:
+push(arr);
+break;
+case 2:
+pop(arr);
 
+break;
+case 3:
+printArray(arr, arrayIndex);
+break;
+case 4:
+printf("Exited the loop.");
+break;
+default:
+printf("Invalid");
+}
+}
+return 0;
+}
